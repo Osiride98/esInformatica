@@ -1,0 +1,6 @@
+1 Livorno Venezia OW478 50400 600
+2 Livorno Napoli ZA543 50410 0
+3 Livorno Shangai AA323 36000 599
+4 Livorno Anversa WD478 36600 0
+5 Livorno Genova WD478 36199 0
+6 Livorno Lagos AH987 36200 600
