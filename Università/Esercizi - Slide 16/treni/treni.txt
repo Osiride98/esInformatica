@@ -1,0 +1,4 @@
+bologna 7:15 padova 10:35
+bologna 8:10 rimini 10:07
+padova 11:03 bologna 13:17
+rimini 12:05 bologna 13:12
