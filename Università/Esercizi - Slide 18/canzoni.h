@@ -39,4 +39,11 @@ int richAscoltatore(canzone c[], int dimC, richiesta r[], int dimR, char * ascol
 
 tempo sommaTempo(tempo t1, tempo t2);
 
+void ordina (canzone playlist[], int dimC);
+
+void swap(canzone *a, canzone *b);
+
+int bubble_sort(canzone v[], int n);
+
+
 #endif

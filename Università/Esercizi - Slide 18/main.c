@@ -41,8 +41,20 @@ char nomeAscoltatore[41];
 printf("Inserire nome Ascoltatore ->");
 scanf("%s", &nomeAscoltatore);
 
-printf("nome tipo = %s\n", nomeAscoltatore);
-
 int resRichiesta = richAscoltatore(arrayCanzoni, numCanzoni, arrayRichieste, numRichieste, nomeAscoltatore);
+
+if(resRichiesta == 1){
+    printf("Richiesta Ascoltatore Accettata");
+}else if (resRichiesta == 0){
+    printf("Richiesta non possibile");
+}
+//PARTE 3
+printf("---PARTE 3---\n");
+
+ordina(arrayCanzoni, numCanzoni);
+
+// for (int i = 0; i < numCanzoni; i++){
+//     printf("Pos[%d] - Canzone '%s' - Anno '%d'\n", i+1, arrayCanzoni[i].titolo, arrayCanzoni[i].annoUscita);
+// }
 
 }

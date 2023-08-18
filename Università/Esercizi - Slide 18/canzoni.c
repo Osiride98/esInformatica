@@ -83,6 +83,8 @@ tempo sommaTempo(tempo t1, tempo t2){
 int richAscoltatore(canzone c[], int dimC, richiesta r[], int dimR, char * ascoltatore){
     int ascRequ = 0;
     int songRequ = 0;
+    int songType = 0;
+    int resCondizioni = 0;
     tempo sommaCanzoni, temp;
 
     sommaCanzoni.minuti = 0;
@@ -90,6 +92,7 @@ int richAscoltatore(canzone c[], int dimC, richiesta r[], int dimR, char * ascol
 
     //condizione 1 - presenza canzoni
     //condizione 2 - somma canzoni max 15 min
+    //condizione 3 - somma canzoni jazz e rock <= 5
 
     for (int i = 0; i <= dimR; i++){
         if (strcmp(r[i].nome_ascoltatore,ascoltatore) == 0){
@@ -100,17 +103,53 @@ int richAscoltatore(canzone c[], int dimC, richiesta r[], int dimR, char * ascol
                     temp.minuti = c[j].minDurata;
                     temp.secondi = c[j].secDurata;
                     sommaCanzoni = sommaTempo(sommaCanzoni, temp);
+                    if (c[j].genere == 'J' || c[j].genere == 'R'){
+                        songType++;
+                    }
+                    
                 }
             }
         }
     }
-    if (songRequ == ascRequ){
-        printf("tutte le canzoni sono presenti in lista Radiofonica\n");
-        printf("tempo totale richiesta canzoni = mm : %d - sec : %d\n", sommaCanzoni.minuti, sommaCanzoni.secondi);
+    if (songRequ == ascRequ && sommaCanzoni.minuti <= 15 && songType <= 5){
+        resCondizioni = 1;
     }else{
-        printf("non soddisfatte le condizioni\n");
+        resCondizioni = 0; 
     }
-    
-    
+    return resCondizioni;
+}
 
+void swap(canzone *a, canzone *b){
+    canzone t = *a;
+    *a = *b;
+    *b = t;
+}
+
+int bubble_sort(canzone v[], int n){
+    /* Effettuo varie "passate" */
+    int i, j;
+    int cnt = 0;
+    int ordinato;
+    for(i = n; i > 1; --i) {    
+        /* all'inizio ipotizzo che l'array sia ordinato */
+        ordinato = 1;
+        /* Ad ogni "passata" considero le coppie adiacenti */
+        for(j = 0; j < i-1; ++j) {
+            /* se l'ordine è invertito, scambio */
+            if(v[j].annoUscita > v[j+1].annoUscita) {
+                swap(&v[j], &v[j+1]);
+                ordinato = 0;
+            }
+            /* un confronto in più */
+            cnt++;
+        }
+        /* se l'array era veramente ordinato, posso interrompere */
+        if(ordinato) break;
+    }
+    /* restituisco il numero di confronti */
+    return cnt;
+}
+
+void ordina (canzone playlist[], int dimC){
+    int cambi = bubble_sort(playlist, dimC);
 }
