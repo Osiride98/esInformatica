@@ -45,5 +45,6 @@ void swap(canzone *a, canzone *b);
 
 int bubble_sort(canzone v[], int n);
 
+int inserisciRichiesta(FILE *fp, canzone c[], int dimC, richiesta r[], int dimR);
 
 #endif

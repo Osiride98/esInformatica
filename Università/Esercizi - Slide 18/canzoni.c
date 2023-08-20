@@ -153,3 +153,7 @@ int bubble_sort(canzone v[], int n){
 void ordina (canzone playlist[], int dimC){
     int cambi = bubble_sort(playlist, dimC);
 }
+
+int inserisciRichiesta (FILE *fp , canzone c[], int dimC, richiesta r[], int dimR){
+    printf("sono qui");
+}

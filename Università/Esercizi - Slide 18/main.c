@@ -44,17 +44,37 @@ scanf("%s", &nomeAscoltatore);
 int resRichiesta = richAscoltatore(arrayCanzoni, numCanzoni, arrayRichieste, numRichieste, nomeAscoltatore);
 
 if(resRichiesta == 1){
-    printf("Richiesta Ascoltatore Accettata");
+    printf("Richiesta Ascoltatore Accettata\n");
 }else if (resRichiesta == 0){
-    printf("Richiesta non possibile");
+    printf("Richiesta non possibile\n");
 }
 //PARTE 3
 printf("---PARTE 3---\n");
 
 ordina(arrayCanzoni, numCanzoni);
 
-// for (int i = 0; i < numCanzoni; i++){
-//     printf("Pos[%d] - Canzone '%s' - Anno '%d'\n", i+1, arrayCanzoni[i].titolo, arrayCanzoni[i].annoUscita);
-// }
+for (int i = 0; i < numCanzoni; i++){
+     printf("Pos[%d] - Canzone '%s' - Anno '%d'\n", i+1, arrayCanzoni[i].titolo, arrayCanzoni[i].annoUscita);
+}
+
+//PARTE 4
+printf("---PARTE 4---\n");
+
+FILE *fp;
+
+if((fp = fopen("richieste.txt", "w")) == NULL) {
+    fprintf(stderr, "Impossibile aprire %s\n", fp);
+    exit(1);
+    }else{
+        printf("Sono in scrittura\n");
+    }
+
+int resAscoltatore = inserisciRichiesta(fp, arrayCanzoni, numCanzoni, arrayRichieste, numRichieste);
+
+if(resAscoltatore == 1){
+    printf("Scrittura richiesta avvenuta con successo\n");
+}else if (resAscoltatore == 0){
+    printf("Inserimento richiesta fallita\n");
+}
 
 }
