@@ -1,0 +1,10 @@
+A 22 Pulizia_del_giardino
+E 25 1223 ristrutturare 2009 3 15
+E 25 3460 idraulico 2008 3 12
+E 25 12456 tetto 2005 6 12
+E 34 45500 ristrutturare 2009 1 12
+E 25 15456 ristrutturare 2009 3 12
+E 25 25400 ristrutturare 2009 3 11
+A 25 sistemato_garage_1
+A 34 Ascensore_2_rotto
+A 22 cisonoletalpe
