@@ -36,7 +36,7 @@ void insert(char* fileName, char type){
         printf("Descrizione comunicazione = ");
         scanf("%s", &newA.comunicazione);
 
-        newA.tipologia = 'A';
+        newA.tipologia = type;
 
         FILE *fp = fopen(fileName, "a");
             if(fp == NULL){
@@ -53,7 +53,7 @@ void insert(char* fileName, char type){
         ComE newE, tempE;
         char tempChar;
 
-        int sameData, sameDescription;
+        int sameData = 0, sameDescription = 0;
 
         printf("Codice Condominio = ");
         scanf("%d", &newE.codice_condominio);
@@ -67,30 +67,74 @@ void insert(char* fileName, char type){
         printf("Inserisci Data = ");
         scanf("%d/%d/%d", &newE.giorno, &newE.mese, &newE.anno);
 
-        FILE *fp = fopen(fileName, "a");
-            if(fp == NULL){
-                fprintf(stderr, "Impossibile aprire %s\n", fileName);
-                exit(1);
+        FILE *fp = fopen(fileName, "r");
+        if(fp == NULL) {
+            fprintf(stderr, "Impossibile aprire %s\n", fileName);
+            exit(1);
             }
-        while (fscanf(fp,"%c", &tempChar) != EOF ){
+
+        //printf("sono in lettura\n");
         
-        if ((int)tempChar == 'E'){
-            tempE.tipologia = tempChar;
-            fscanf(fp, "%d%d%s%d%d%d", &tempE.codice_condominio, &tempE.importo_monetario,
-                                        tempE.descrizione, &tempE.anno, &tempE.mese,
-                                        &tempE.giorno);
-            if (strcmp(newE.descrizione,tempE.descrizione)==0){
-                sameDescription = 1;
-            }
-            if (newE.anno == tempE.anno && newE.mese == tempE.mese && newE.giorno == tempE.giorno){
-                sameData = 1;
-            }
+        int dim = 0;
+        
+        while (fscanf(fp,"%c", &tempChar) != EOF ){
+            if ((int)tempChar == 'E'){
+                dim++;
+                //printf("%d\n", dim);
+                }
+        }
+        ComE *resE = (ComE*) malloc((dim)*sizeof(ComE));
+        rewind(fp);
+        int i = 0;
+        
+        while (fscanf(fp,"%c", &tempChar) != EOF ){
             
+            if ((int)tempChar == 'E'){
+                tempE.tipologia = tempChar;
+                fscanf(fp, "%d%d%s%d%d%d", &tempE.codice_condominio, &tempE.importo_monetario,
+                                            tempE.descrizione, &tempE.anno, &tempE.mese,
+                                            &tempE.giorno);
+                resE[i] = tempE;
+                i++;
+                //printf("%d\n", i);
+            }
             
         }
-        
-    }
+        /* chiudo il file */
         fclose(fp);
+        //printf("sto arrivando\n");
+
+        for (int k = 0; k < dim; k++){
+            if (resE[k].anno == newE.anno && resE[k].mese == newE.mese && resE[k].giorno == newE.giorno){
+                sameData = 1;
+            }
+            if (strcmp(resE[k].descrizione,newE.descrizione)==0){
+                sameDescription = 1;
+            }
+        }
+        
+        if (sameData == 1 || sameDescription == 1){
+
+            printf("impossibile inserire comunicazione\n");
+
+        }else if(sameData == 0 && sameDescription == 0){
+
+            FILE *fp1 = fopen(fileName, "a");
+            if(fp == NULL){
+            fprintf(stderr, "Impossibile aprire %s\n", fileName);
+            exit(1);
+            }
+
+        newE.tipologia = type;
+
+        fprintf(fp1, "%c %d %d %s %d %d %d\n", newE.tipologia, newE.codice_condominio, newE.importo_monetario,
+                                            newE.descrizione, newE.anno, newE.mese, newE.giorno);
+        fclose(fp1);
+        }
     }
-    
+
+    if (type != 'A' && type != 'E'){
+        printf("Comunicazione non accettata");
+    }
+
 }
