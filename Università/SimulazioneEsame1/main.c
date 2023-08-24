@@ -68,6 +68,29 @@ scanf("%s", &cf);
 
 float scontrino =  totaleScontrino(va, dimA, vp, dimP, cf);
 
-printf("Importo Scontrino = %.3f", scontrino);
+printf("Importo Scontrino = %.3f\n", scontrino);
+
+//PARTE 5
+printf("---PARTE 5---\n");
+
+Acquisto newAcquisto;
+
+printf("Inserire Codice fiscale -> ");
+scanf("%s", &newAcquisto.cf_cliente);
+
+printf("inserire codice peperoncino -> ");
+scanf("%s", &newAcquisto.codice);
+
+printf("inserire quantita -> ");
+scanf("%d", &newAcquisto.quantita);
+
+int regAcq = registraAcquisto("acquisti.txt", &newAcquisto);
+
+
+if (regAcq == 0){
+    printf("registrazione acquisto eseguita");
+}else{
+    printf("registrazione acquisto fallita");
+}
 
 }

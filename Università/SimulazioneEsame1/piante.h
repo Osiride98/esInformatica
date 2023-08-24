@@ -35,4 +35,6 @@ int cercaPeperoncino (Peperoncino p[], int dim, char* codice);
 float totaleScontrino(Acquisto a[], int dimA, Peperoncino p[], int dimP, 
 char *cf);
 
+int registraAcquisto (char* nomefile, Acquisto *a);
+
 #endif

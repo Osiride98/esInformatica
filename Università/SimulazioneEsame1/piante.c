@@ -141,10 +141,27 @@ float totaleScontrino(Acquisto a[], int dimA, Peperoncino p[], int dimP, char *c
                         scontrinoFinale = scontrinoFinale + prezzoProdotto;
                     }
                     p[k].quantita = p[k].quantita - a[i].quantita;
+                    printf("Nuova Quantita %s -> %d\n", p[k].nome, p[k].quantita);
                 }
             }
         }
     }
     return scontrinoFinale;
 
+}
+
+int registraAcquisto (char* nomefile, Acquisto *a){
+
+    int res = -1;
+
+    FILE *fp = fopen("acquisti.txt", "a");
+    if(fp == NULL) {
+        fprintf(stderr, "Impossibile aprire %s\n", "acquisti.txt");
+        exit(1);
+        }else{
+            fprintf(fp, "%s %s %d\n", a->cf_cliente, a->codice, a->quantita);
+            res = 0;
+            }
+    fclose(fp);
+    return res;
 }
