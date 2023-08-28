@@ -1,0 +1,7 @@
+/* si vuole realizzare un codice:
+1 - prendendo in ingresso una stringa (es "foratura", "fresatura") riconosca la tipologia di lavorazione e chieda geometria del pezzo, punto di inizio lavoro e punto di fine lavoro, velocità di lavoro e avanzamento.
+Se il pezzo è già stato definito chiedere se mantenere geometria o farne una nuova (inserire la vecchia in un array di memoria avente dimensione finita). Se il pezzo è stato definito all'interno di una funzione
+(esempio: in foratura / dim pezzo x=500 y=200 z=50) mantenere le dimensioni del pezzo anche fuori dalle lavorazioni. 
+2 -
+
+  */
