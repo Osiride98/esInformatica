@@ -1,0 +1,6 @@
+sbruna 620 26.3 0
+jersey 450 23.4 1
+frisona 650 34.4 1
+grigio_alpina 530 18.6 0
+reggiana 700 32.1 1
+valdostana 360 20.3 0
